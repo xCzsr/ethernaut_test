@@ -1,0 +1,31 @@
+{
+  "name": "ethernaut_test",
+  "version": "1.0.0",
+  "description": "Working through the ethernaut challange",
+  "main": "\t",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xCzsr/ethernaut_test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xCzsr/ethernaut_test/issues"
+  },
+  "homepage": "https://github.com/xCzsr/ethernaut_test#readme",
+  "devDependencies": {
+    "hardhat": "^2.12.5"
+  },
+  "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^1.0.2",
+    "@nomiclabs/hardhat-ethers": "^2.2.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.3",
+    "chai": "^4.3.6",
+    "dotenv": "^16.0.3",
+    "ethereum-waffle": "^3.4.0",
+    "ethers": "^5.5.4"
+  }
+}

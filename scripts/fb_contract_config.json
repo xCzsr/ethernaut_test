@@ -1,0 +1,25 @@
+{
+    "31337": {
+        "FallbackHack": {
+            "address": "0x8464135c8f25da09e49bc8782676a84730c318bc"
+        }, 
+        "Fallback": {
+            "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+        }, 
+        "explorerURL" : "#",
+        "allowUnlimitedContractSize": true
+
+    },
+
+    "5": {
+
+        "FallbackHack": {
+            "address": "0x8464135c8f25da09e49bc8782676a84730c318bc"
+        }, 
+        "FallBack": {
+            "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+        },
+        "explorerURL" : "https://goerli.etherscan.io/"
+
+    }
+}
