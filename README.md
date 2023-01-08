@@ -30,4 +30,26 @@ Terminal #2
 `$ npx hardhat run scripts/1_deploy_FB.js --network localhost`
 `$ npx hardhat run scripts/2_becomeOwner_FB.js --network localhost`
 
+# FallOut 
+This is exploit example highlights the improper use of a constructor.
 
+the solution to this problem is quiet simple.
+
+Based on the constructor function pasted below, the sender can become the contract owner. If the sender calls the `Fal1out()` function with no amount of ether.
+
+`function Fal1out() public payable {
+  owner = payable(msg.sender);
+  allocations[owner] = msg.value;
+  }
+  `
+
+the solution should be as follows.
+1. call the `Fal1out()` function and send it 0 ether
+
+To run my solution:
+
+Terminal #1 
+`$ npx hardhat node`
+
+Terminal #2
+`$ npx hardhat run scripts/2_deploy_FO.js --network localhost`

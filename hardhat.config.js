@@ -20,7 +20,5 @@ module.exports = {
       url: `https://goerli.infura.io/v3/${infuraKey}`,
       accounts: privateKeys.split(","),
     }
-
-     
   }
 };
