@@ -3,7 +3,7 @@ Working through the ethernaut challange and documention as much as Possible
 
 # Fallback
 
-This is exploit example highlights the improper use of Fallback Functions.
+This exploit example highlights the improper use of Fallback Functions.
 
 the solution to this problem is quiet simple.
 
@@ -31,7 +31,7 @@ Terminal #2
 `$ npx hardhat run scripts/2_becomeOwner_FB.js --network localhost`
 
 # FallOut 
-This is exploit example highlights the improper use of a constructor.
+This exploit example highlights the improper use of a constructor.
 
 the solution to this problem is quiet simple.
 
@@ -40,6 +40,43 @@ Based on the constructor function pasted below, the sender can become the contra
 `function Fal1out() public payable {
   owner = payable(msg.sender);
   allocations[owner] = msg.value;
+  }
+  `
+
+the solution should be as follows.
+1. call the `Fal1out()` function and send it 0 ether
+
+To run my solution:
+
+Terminal #1 
+`$ npx hardhat node`
+
+Terminal #2
+`$ npx hardhat run scripts/2_deploy_FO.js --network localhost`
+
+# Coin Flip
+
+This exploit example highlight the improper use of randomness.
+
+Based on the `flip()` function pasted below, the sender can become the contract owner. If the sender calls the `Fal1out()` function with no amount of ether.
+
+`function flip(bool _guess) public returns (bool){uint256 blockValue = uint256(blockhash(block.number - 1));
+
+    if (lastHash == blockValue) {
+      revert();
+    }
+
+    lastHash = blockValue;
+    uint256 coinFlip = blockValue / FACTOR;
+    bool side = coinFlip == 1 ? true : false;
+
+    if (side == _guess) {
+      consecutiveWins++;
+      return true;
+    } else {
+      consecutiveWins = 0;
+      return false;
+    }
   }
   `
 
