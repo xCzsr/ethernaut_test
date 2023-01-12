@@ -58,9 +58,10 @@ Terminal #2
 
 This exploit example highlight the improper use of randomness.
 
-Based on the `flip()` function pasted below, the sender can become the contract owner. If the sender calls the `Fal1out()` function with no amount of ether.
-
-`function flip(bool _guess) public returns (bool){uint256 blockValue = uint256(blockhash(block.number - 1));
+Based on the `flip()` function pasted below, using the blocknumber and hash and factor used can help predict the coin flip.
+           
+    function flip(bool _guess) public returns (bool){
+    uint256 blockValue = uint256(blockhash(block.number - 1));
 
     if (lastHash == blockValue) {
       revert();
@@ -77,16 +78,28 @@ Based on the `flip()` function pasted below, the sender can become the contract 
       consecutiveWins = 0;
       return false;
     }
-  }
-  `
 
 the solution should be as follows.
-1. call the `Fal1out()` function and send it 0 ether
+1. call the `flip()` function  10 times 
 
 To run my solution:
+1. I used remix 
 
-Terminal #1 
-`$ npx hardhat node`
+# TelePhone 
 
-Terminal #2
-`$ npx hardhat run scripts/2_deploy_FO.js --network localhost`
+This exploit example highlight the improper use of tx.origin.
+
+Based on the `ChangeOwner()` function it is clear that the the solution is to call this function with an address. Due to tx.origin and msg.sender not being the same thing. 
+
+    function changeOwner(address _owner) public {
+        if (tx.origin != msg.sender) {
+          owner = _owner;
+        }
+      }
+
+The solution is call:
+1. call the `changeOwner()` with the wallet address 
+
+To run my solution: 
+1. I used hardhat with the goerli test network.
+`npx hardhat run scripts/4_deploy_Tele.js --network goerli`
