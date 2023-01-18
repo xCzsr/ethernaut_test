@@ -103,3 +103,27 @@ The solution is call:
 To run my solution: 
 1. I used hardhat with the goerli test network.
 `npx hardhat run scripts/4_deploy_Tele.js --network goerli`
+
+# Delegation 
+
+This exploit was not so straight forward.
+I tried using a smart contract to solve the problem, but it was the wrong method.
+What is interesting is that it works on the hardhat localhost network but not on the goerli test network.
+
+The solution is somehwhat trivial. Understanding that the `fallback()` of Delgation smart contract called the `pwn()` function of the Delegate smart contract is the key.
+
+My approach was to call the my own smart contract that calls. dela being the contract address of delegation. 
+
+    (bool success , bytes memory returnData) = address(dela).call(abi.encodeWithSignature("pwn()"));
+
+The problem with this approach is that the msg.sender is now the address of the delegation smart contract. This is because youre calling `pwn()` from the Delegation smart contract.
+
+So the solution is use the terminal....
+
+    await contract.sendTransaction({data: "0xdd365b8b"})
+
+
+  data: "0xdd365b8b" is abi.encodeWithSignature("pwn()")) data.
+
+    
+

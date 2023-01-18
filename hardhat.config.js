@@ -7,7 +7,16 @@ const infuraKey = process.env.INFURA_API_KEY || ""
 /** @type import('hardhat/config').HardhatUserConfig */
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
-  solidity: "0.8.9",
+solidity: {
+    compilers: [
+      {
+        version: "0.8.9",
+      },
+      {
+        version: "0.6.7",
+      }
+    ]
+  },
 
   networks: {
 
