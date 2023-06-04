@@ -126,4 +126,32 @@ So the solution is use the terminal....
   data: "0xdd365b8b" is abi.encodeWithSignature("pwn()")) data.
 
     
+# Valut
 
+The exploit was right in your face but it was not straight foward on how to get it.
+
+There are no hidded variables on solidity. `password` may be private variable but there are other ways of getting it.
+
+all that need to be done is access the private variable via the storage slot.
+
+    locked    - slot 0
+    password  - slot 1
+
+so using the chrome terminal
+`await web3.eth.getStorageAt('0x783AD551E9f387d6B470eE0584CD9dE1963a4e12',0)`
+this will return the EVM bytecode.
+So we need to decode it.
+`await web3.eth.abi.decodeParameter("bool","0x0000000000000000000000000000000000000000000000000000000000000001")`
+
+So pretty simple.
+
+# King 
+
+I have to come back to this one. I do not have 1 ether lol...
+
+Basically you have to send the contract more than 1 ether to become 
+king... 
+    calling the fallback function
+    then create a fallback function in the contract that reverts to not send eth back and not make the person king
+    
+# 
